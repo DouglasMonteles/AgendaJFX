@@ -1,33 +1,57 @@
 package com.doug.agenda.model;
 
-import java.util.Date;
+import java.io.Serializable;
+import java.time.LocalDate;
 
-public class Contact {
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
 
+@Entity
+@Table(name = "tb_contact")
+public class Contact implements Serializable {
+
+	private static final long serialVersionUID = 1L;
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	
+	@Column(length = 100, nullable = false)
 	private String description;
 	
+	@Column(length = 100, nullable = true)
 	private String andress;
 	
+	@Column(name = "numero_residencia", nullable = true)
 	private Integer number;
 	
+	@Column(length = 50, nullable = false)
 	private String email;
 	
-	private Date birthDate;
+	@Column(nullable = true)
+	private LocalDate birthDate;
 	
+	@Column(length = 11, nullable = false)
 	private String phone1;
 	
+	@Column(length = 11, nullable = false)
 	private String phone2;
 	
+	@OneToOne
 	private City city;
 	
+	@OneToOne
 	private TypeContact typeContact;
 	
 	public Contact() {}
 
 	public Contact(Long id, String description, String andress, Integer number, 
-			String email, Date birthDate, String phone1, String phone2, City city, 
+			String email, LocalDate birthDate, String phone1, String phone2, City city, 
 			TypeContact typeContact) {
 		super();
 		this.id = id;
@@ -82,11 +106,11 @@ public class Contact {
 		this.email = email;
 	}
 
-	public Date getBirthDate() {
+	public LocalDate getBirthDate() {
 		return birthDate;
 	}
 
-	public void setBirthDate(Date birthDate) {
+	public void setBirthDate(LocalDate birthDate) {
 		this.birthDate = birthDate;
 	}
 

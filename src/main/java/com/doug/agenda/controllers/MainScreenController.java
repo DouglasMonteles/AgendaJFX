@@ -1,16 +1,22 @@
 package com.doug.agenda.controllers;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 
 public class MainScreenController implements Initializable {
 
@@ -87,17 +93,17 @@ public class MainScreenController implements Initializable {
 
     @FXML
     void accessCity(ActionEvent event) {
-
+    	this.openForm("FormCityScreen");
     }
 
     @FXML
     void accessContact(ActionEvent event) {
-
+    	this.openForm("FormContactScreen");
     }
 
     @FXML
     void accessGeneralContacts(ActionEvent event) {
-
+    	
     }
 
     @FXML
@@ -107,27 +113,46 @@ public class MainScreenController implements Initializable {
 
     @FXML
     void accessPhoneContact(ActionEvent event) {
-
+    	
     }
 
     @FXML
     void accessTypeContact(ActionEvent event) {
-
+    	
     }
 
     @FXML
     void accessTypeContacts(ActionEvent event) {
-
+    	this.openForm("FormTypeContactScreen");
     }
 
     @FXML
     void accessUsers(ActionEvent event) {
-
+    	this.openForm("FormUserScreen");
     }
 
     @FXML
     void exit(ActionEvent event) {
-
+    	
+    }
+    
+    public void openForm(String formName) {
+    	try {
+			Parent formScreen = FXMLLoader.load(getClass()
+					.getResource("/views/" + formName + ".fxml"));
+			
+			Stage stage = new Stage();
+			Scene scene = new Scene(formScreen);
+			
+			stage.setScene(scene);
+			stage.setTitle("Formulário");
+			stage.setResizable(false);
+			stage.initModality(Modality.APPLICATION_MODAL); // mantém a tela aberta
+			
+			stage.show();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
     }
 
 }

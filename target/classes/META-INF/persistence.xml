@@ -1,0 +1,31 @@
+<persistence xmlns="http://java.sun.com/xml/ns/persistence"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd"
+    version="2.0">
+    <persistence-unit name="agedaJFX" transaction-type="RESOURCE_LOCAL">
+    
+        <!-- Persistence provider -->
+        <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+
+        <!-- Entity class-->
+        <class>com.doug.agenda.model.City</class>
+        <class>com.doug.agenda.model.Contact</class>
+        <class>com.doug.agenda.model.TypeContact</class>
+        <class>com.doug.agenda.model.User</class>
+
+        <properties>
+            <property name="hibernate.dialect" value="org.sqlite.hibernate.dialect.SQLiteDialect" />
+            <property name="javax.persistence.jdbc.driver" value="org.sqlite.JDBC" />
+            <property name="javax.persistence.jdbc.url" value="jdbc:sqlite:agendaJFX-sqlite.db" />
+            <property name="javax.persistence.jdbc.user" value="" />
+            <property name="javax.persistence.jdbc.password" value="" />
+            <property name="hibernate.show_sql" value="true" />
+            <property name="format_sql" value="true" />
+            <property name="hibernate.connection.charSet" value="UTF-8" />
+            <property name="hibernate.hbm2ddl.auto" value="none" /> <!-- Atualiza o schema, sem destruir os dados anteriores -->
+            <!-- <property name="hibernate.hbm2ddl.auto" value="create" /> --> <!-- Cria o schema, destroi os dados anteriores -->
+            <!-- <property name="hibernate.hbm2ddl.auto" value="none" />  --> <!-- Não faz nada com o schema e nem com o banco de dados -->
+        </properties>
+        
+    </persistence-unit>
+</persistence>

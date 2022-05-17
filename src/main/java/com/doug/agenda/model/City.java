@@ -1,18 +1,36 @@
 package com.doug.agenda.model;
 
-public class City {
+import java.io.Serializable;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "tb_city")
+public class City implements Serializable {
+
+	private static final long serialVersionUID = 1L;
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	
+	@Column(length = 100, nullable = false)
 	private String description;
 	
+	@Column(length = 2, nullable = false)
 	private String uf;
 	
-	private String cep;
+	@Column(length = 8, nullable = false)
+	private Long cep;
 	
 	public City() {}
 
-	public City(Long id, String description, String uf, String cep) {
+	public City(Long id, String description, String uf, Long cep) {
 		super();
 		this.id = id;
 		this.description = description;
@@ -44,11 +62,11 @@ public class City {
 		this.uf = uf;
 	}
 
-	public String getCep() {
+	public Long getCep() {
 		return cep;
 	}
 
-	public void setCep(String cep) {
+	public void setCep(Long cep) {
 		this.cep = cep;
 	}
 	
