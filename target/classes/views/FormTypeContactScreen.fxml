@@ -16,7 +16,7 @@
    <children>
       <HBox alignment="CENTER" layoutX="187.0" layoutY="29.0" prefHeight="50.0" prefWidth="200.0" style="-fx-background-color: #00b6b6; -fx-border-color: #000;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <Label fx:id="lbTitle" prefHeight="35.0" prefWidth="67.0" text="Título">
+            <Label fx:id="lbTitle" alignment="CENTER" prefHeight="35.0" prefWidth="306.0" text="Título">
                <font>
                   <Font name="System Bold" size="24.0" />
                </font>
@@ -73,7 +73,7 @@
                   </Button>
                </children>
             </HBox>
-            <TextField fx:id="tfSearch" layoutX="29.0" layoutY="69.0" onAction="#search" style="-fx-background-radius: 20;" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="70.0" />
+            <TextField fx:id="tfSearch" layoutX="29.0" layoutY="69.0" onKeyReleased="#filterRecords" promptText="Filtro de pesquisa" style="-fx-background-radius: 20;" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="70.0" />
             <TableView fx:id="tableView" layoutX="14.0" layoutY="104.0" prefHeight="240.0" prefWidth="578.0" AnchorPane.bottomAnchor="1.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="1.0" AnchorPane.topAnchor="100.0" />
          </children>
       </AnchorPane>

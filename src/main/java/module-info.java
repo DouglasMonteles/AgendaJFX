@@ -14,6 +14,6 @@ module agendaJFX {
 	
 	opens com.doug.agenda to javafx.graphics, javafx.fxml, javafx.base;
 	opens com.doug.agenda.controllers to javafx.fxml;
-	opens com.doug.agenda.model to java.persistence, org.hibernate.orm.core;
+	opens com.doug.agenda.model to java.persistence, org.hibernate.orm.core, javafx.base;
 	
 }
