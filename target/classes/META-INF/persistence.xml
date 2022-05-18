@@ -20,7 +20,7 @@
             <property name="javax.persistence.jdbc.user" value="" />
             <property name="javax.persistence.jdbc.password" value="" />
             <property name="hibernate.show_sql" value="true" />
-            <property name="format_sql" value="true" />
+            <property name="hibernate.format_sql" value="true" />
             <property name="hibernate.connection.charSet" value="UTF-8" />
             <property name="hibernate.hbm2ddl.auto" value="none" /> <!-- Atualiza o schema, sem destruir os dados anteriores -->
             <!-- <property name="hibernate.hbm2ddl.auto" value="create" /> --> <!-- Cria o schema, destroi os dados anteriores -->

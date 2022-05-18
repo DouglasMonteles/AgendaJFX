@@ -15,7 +15,7 @@ public class TypeContactDao {
 			transaction = manager.getTransaction();
 			transaction.begin();
 			
-			manager.persist(tc); // salva ou atualiza: se tive id ele atualiza
+			manager.merge(tc); // salva ou atualiza: se tive id é atualizado
 			
 			transaction.commit();
 			

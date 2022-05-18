@@ -3,6 +3,7 @@ package com.doug.agenda.controllers;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import com.doug.agenda.controllers.contracts.IRegister;
 import com.jfoenix.controls.JFXTextField;
 
 import javafx.event.ActionEvent;
@@ -12,7 +13,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 
-public class FormScreenController implements Initializable {
+public class FormScreenController implements Initializable, IRegister {
 
     @FXML
     private Button btnDelete;
@@ -59,5 +60,29 @@ public class FormScreenController implements Initializable {
     void search(ActionEvent event) {
 
     }
+
+	@Override
+	public void createTableColumns() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void updateTable() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void setFormFields() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void clearFormFields() {
+		// TODO Auto-generated method stub
+		
+	}
 
 }

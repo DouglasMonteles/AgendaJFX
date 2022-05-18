@@ -3,6 +3,7 @@ package com.doug.agenda.controllers;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import com.doug.agenda.controllers.contracts.IRegister;
 import com.doug.agenda.dao.TypeContactDao;
 import com.doug.agenda.model.TypeContact;
 import com.jfoenix.controls.JFXTextField;
@@ -15,7 +16,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 
-public class FormTypeContactController implements Initializable {
+public class FormTypeContactController implements Initializable, IRegister {
 
     @FXML
     private Button btnDelete;
@@ -72,5 +73,29 @@ public class FormTypeContactController implements Initializable {
     void search(ActionEvent event) {
 
     }
+
+	@Override
+	public void createTableColumns() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void updateTable() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void setFormFields() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void clearFormFields() {
+		// TODO Auto-generated method stub
+		
+	}
 
 }
