@@ -4,6 +4,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import com.doug.agenda.controllers.contracts.IRegister;
+import com.doug.agenda.utils.UF;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextField;
 import javafx.event.ActionEvent;
@@ -40,11 +41,11 @@ public class FormCityController implements Initializable, IRegister {
     private JFXTextField tfcep;
 
     @FXML
-    private JFXComboBox<?> tfuf;
+    private JFXComboBox<String> tfuf;
     
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-    	
+    	tfuf.setItems(UF.ufGenerator());
     }
 
     @FXML
