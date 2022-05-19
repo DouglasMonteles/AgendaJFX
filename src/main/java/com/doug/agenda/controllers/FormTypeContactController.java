@@ -63,16 +63,20 @@ public class FormTypeContactController implements Initializable, IRegister {
     	
     	this.createTableColumns();
     	this.updateTable();
+    	this.setFormFields();
     }
 
     @FXML
     void deleteRegister(ActionEvent event) {
-
+    	tcDao.delete(typeContactSelected);
+    	
+    	clearFormFields();
+    	updateTable();
     }
 
     @FXML
     void includeRegister(ActionEvent event) {
-
+    	clearFormFields();
     }
 
     @FXML
@@ -93,6 +97,11 @@ public class FormTypeContactController implements Initializable, IRegister {
     
     @FXML
     void clickedOnTableLine(MouseEvent event) {
+    	setFormFields();
+    }
+    
+    @FXML
+    void moveTable(KeyEvent event) {
     	setFormFields();
     }
 
@@ -135,8 +144,11 @@ public class FormTypeContactController implements Initializable, IRegister {
 
 	@Override
 	public void clearFormFields() {
-		// TODO Auto-generated method stub
+		typeContactSelected = null;
+		tfId.clear();
+		tfDescription.clear();
 		
+		tfDescription.requestFocus(); // posiciona o cursor neste campo
 	}
 
 }

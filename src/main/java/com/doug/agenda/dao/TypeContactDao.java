@@ -38,7 +38,7 @@ public class TypeContactDao {
 			if (transaction != null) {
 				transaction.rollback();
 			}
-			System.out.println("Error findAll: " + e.getMessage());
+			System.out.println("Error in findAll of TypeContact: " + e.getMessage());
 		} finally {
 			manager.close();
 		}
@@ -57,14 +57,35 @@ public class TypeContactDao {
 			manager.merge(tc); // salva ou atualiza: se tive id é atualizado
 			
 			transaction.commit();
-			
-			System.out.println("Tipo de Contato salvo com sucesso!");
 		} catch (Exception e) {
 			if (transaction != null) {
 				transaction.rollback();
 			}
-			System.out.println(e.getMessage());
-			e.printStackTrace();
+			
+			System.out.println("Error in save of TypeContact: " + e.getMessage());
+		} finally {
+			manager.close();
+		}
+	}
+	
+	public void delete(TypeContact tc) {
+		EntityManager manager = DatabaseConnection.openConnection();
+		EntityTransaction transaction = null;
+		
+		try {
+			transaction = manager.getTransaction();
+			transaction.begin();
+			
+			tc = manager.find(TypeContact.class, tc.getId());
+			manager.remove(tc);
+			
+			transaction.commit();
+		} catch (Exception e) {
+			if (transaction != null) {
+				transaction.rollback();
+			}
+			
+			System.out.println("Error in delete of TypeContact: " + e.getMessage());
 		} finally {
 			manager.close();
 		}
