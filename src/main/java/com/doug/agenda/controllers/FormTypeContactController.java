@@ -21,6 +21,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
 
 public class FormTypeContactController implements Initializable, IRegister {
 
@@ -53,6 +54,8 @@ public class FormTypeContactController implements Initializable, IRegister {
     private ObservableList<TypeContact> observableTypeContact = FXCollections.observableArrayList(); 
     
     private List<TypeContact> listTypesOfContacts;
+    
+    private TypeContact typeContactSelected;
     
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -87,12 +90,23 @@ public class FormTypeContactController implements Initializable, IRegister {
     void filterRecords(KeyEvent event) {
     	updateTable();
     }
+    
+    @FXML
+    void clickedOnTableLine(MouseEvent event) {
+    	setFormFields();
+    }
 
 	@Override
 	public void createTableColumns() {
 		TableColumn<TypeContact, Long> idColumn = new TableColumn<TypeContact, Long>("ID");
-		TableColumn<TypeContact, String> descriptionColumn = new TableColumn<TypeContact, String>("DESCRIÇÃO");
 	
+		idColumn.setMinWidth(40);
+		idColumn.setMaxWidth(120);
+		
+		TableColumn<TypeContact, String> descriptionColumn = new TableColumn<TypeContact, String>("DESCRIÇÃO");
+		
+		tableView.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
+		
 		tableView.getColumns().addAll(idColumn, descriptionColumn);
 		
 		idColumn.setCellValueFactory(new PropertyValueFactory<TypeContact, Long>("id"));
@@ -112,8 +126,11 @@ public class FormTypeContactController implements Initializable, IRegister {
 
 	@Override
 	public void setFormFields() {
-		// TODO Auto-generated method stub
+		typeContactSelected = tableView.getItems()
+				.get(tableView.getSelectionModel().getSelectedIndex());
 		
+		tfId.setText(String.valueOf(typeContactSelected.getId()));
+		tfDescription.setText(typeContactSelected.getDescription());
 	}
 
 	@Override

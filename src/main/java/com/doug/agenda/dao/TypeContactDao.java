@@ -39,6 +39,8 @@ public class TypeContactDao {
 				transaction.rollback();
 			}
 			System.out.println("Error findAll: " + e.getMessage());
+		} finally {
+			manager.close();
 		}
 		
 		return typesOfContacts;
@@ -63,6 +65,8 @@ public class TypeContactDao {
 			}
 			System.out.println(e.getMessage());
 			e.printStackTrace();
+		} finally {
+			manager.close();
 		}
 	}
 	

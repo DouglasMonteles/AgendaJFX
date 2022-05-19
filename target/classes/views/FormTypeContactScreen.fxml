@@ -74,7 +74,7 @@
                </children>
             </HBox>
             <TextField fx:id="tfSearch" layoutX="29.0" layoutY="69.0" onKeyReleased="#filterRecords" promptText="Filtro de pesquisa" style="-fx-background-radius: 20;" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="70.0" />
-            <TableView fx:id="tableView" layoutX="14.0" layoutY="104.0" prefHeight="240.0" prefWidth="578.0" AnchorPane.bottomAnchor="1.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="1.0" AnchorPane.topAnchor="100.0" />
+            <TableView fx:id="tableView" layoutX="14.0" layoutY="104.0" onMouseClicked="#clickedOnTableLine" prefHeight="240.0" prefWidth="578.0" AnchorPane.bottomAnchor="1.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="1.0" AnchorPane.topAnchor="100.0" />
          </children>
       </AnchorPane>
    </children>

@@ -24,10 +24,4 @@ public class DatabaseConnection {
 		return null;
 	}
 	
-	public static void closeConnection() {
-		if (connection != null) {
-			connection.close();
-		}
-	}
-	
 }
