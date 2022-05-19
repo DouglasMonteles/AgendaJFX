@@ -69,10 +69,13 @@ public class FormTypeContactController implements Initializable, IRegister {
 
     @FXML
     void deleteRegister(ActionEvent event) {
-    	tcDao.delete(typeContactSelected);
-    	
-    	clearFormFields();
-    	updateTable();
+    	if (Alert.confirmAlert("Deseja realmente excluir o tipo de contato: " + tfDescription.getText())) {
+    		tcDao.delete(typeContactSelected);    		
+    		clearFormFields();
+    		updateTable();
+    		
+    		Alert.informationAlert("Tipo de contato excluído com sucesso!");
+    	}    	
     }
 
     @FXML
