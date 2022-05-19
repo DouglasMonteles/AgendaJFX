@@ -7,6 +7,7 @@ import java.util.ResourceBundle;
 import com.doug.agenda.controllers.contracts.IRegister;
 import com.doug.agenda.dao.TypeContactDao;
 import com.doug.agenda.model.TypeContact;
+import com.doug.agenda.utils.Alert;
 import com.jfoenix.controls.JFXTextField;
 
 import javafx.collections.FXCollections;
@@ -89,7 +90,11 @@ public class FormTypeContactController implements Initializable, IRegister {
     	
     	tc.setDescription(tfDescription.getText());
 
-    	tcDao.save(tc);
+    	if (tcDao.save(tc)) {
+    		Alert.informationAlert("Tipo de contato gravado com sucesso!");
+    	} else {
+    		Alert.informationAlert("Ocorreu um erro ao tentar gravar um tipo de contato!");
+    	}
     	
     	updateTable();
     	clearFormFields();

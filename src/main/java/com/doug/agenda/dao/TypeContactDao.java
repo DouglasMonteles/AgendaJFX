@@ -46,7 +46,7 @@ public class TypeContactDao {
 		return typesOfContacts;
 	}
 
-	public void save(TypeContact tc) {
+	public boolean save(TypeContact tc) {
 		EntityManager manager = DatabaseConnection.openConnection();
 		EntityTransaction transaction = null;
 		
@@ -63,9 +63,12 @@ public class TypeContactDao {
 			}
 			
 			System.out.println("Error in save of TypeContact: " + e.getMessage());
+			return false;
 		} finally {
 			manager.close();
 		}
+		
+		return true;
 	}
 	
 	public void delete(TypeContact tc) {
