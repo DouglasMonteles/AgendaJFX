@@ -83,11 +83,16 @@ public class FormTypeContactController implements Initializable, IRegister {
     void saveRegister(ActionEvent event) {
     	TypeContact tc = new TypeContact();
     	
+    	if (typeContactSelected != null) {
+    		tc.setId(typeContactSelected.getId());
+    	}
+    	
     	tc.setDescription(tfDescription.getText());
 
     	tcDao.save(tc);
     	
     	updateTable();
+    	clearFormFields();
     }
 
     @FXML
