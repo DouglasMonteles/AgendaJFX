@@ -8,7 +8,12 @@ import javax.persistence.EntityTransaction;
 
 import com.doug.agenda.model.TypeContact;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+
 public class TypeContactDao {
+	
+	private ObservableList<TypeContact> obsTypesContacts = FXCollections.observableArrayList();
 	
 	public List<TypeContact> findAll(String description) {
 		List<TypeContact> typesOfContacts = new ArrayList<>();
@@ -44,6 +49,37 @@ public class TypeContactDao {
 		}
 		
 		return typesOfContacts;
+	}
+	
+	public ObservableList<TypeContact> findAll() {
+		List<TypeContact> typesOfContacts = new ArrayList<TypeContact>();
+		
+		EntityManager manager = DatabaseConnection.openConnection();
+		EntityTransaction transaction = null;
+		
+		try {
+			transaction = manager.getTransaction();
+			transaction.begin();
+			
+			String query = "SELECT tc FROM TypeContact tc";
+			
+			typesOfContacts = manager.createQuery(query, TypeContact.class)
+					.getResultList();
+			
+			transaction.commit();
+		} catch (Exception e) {
+			if (transaction != null) {
+				transaction.rollback();
+			}
+			
+			System.out.println("Error in comboBox of TypeContact: " + e.getMessage());
+		} finally {
+			manager.close();
+		}
+		
+		typesOfContacts.forEach(obsTypesContacts::add);
+		
+		return obsTypesContacts;
 	}
 
 	public boolean save(TypeContact tc) {

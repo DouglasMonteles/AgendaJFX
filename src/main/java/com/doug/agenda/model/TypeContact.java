@@ -46,4 +46,9 @@ public class TypeContact implements Serializable {
 		this.description = description;
 	}
 	
+	@Override
+	public String toString() {
+		return description;
+	}
+	
 }

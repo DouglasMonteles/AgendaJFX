@@ -4,6 +4,8 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import com.doug.agenda.controllers.contracts.IRegister;
+import com.doug.agenda.dao.TypeContactDao;
+import com.doug.agenda.model.TypeContact;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextField;
 import javafx.event.ActionEvent;
@@ -58,14 +60,16 @@ public class FormContactController implements Initializable, IRegister {
     private JFXTextField tfTelefone2;
 
     @FXML
-    private JFXComboBox<?> tfTipoContato;
+    private JFXComboBox<TypeContact> tfTipoContato;
 
     @FXML
     private JFXTextField tfUf;
     
+    private TypeContactDao tcDao = new TypeContactDao();
+    
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-    	
+    	tfTipoContato.setItems(tcDao.findAll());
     }
 
     @FXML
