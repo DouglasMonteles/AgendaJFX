@@ -4,10 +4,12 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import com.doug.agenda.controllers.contracts.IRegister;
-import com.doug.agenda.dao.TypeContactDao;
+import com.doug.agenda.dao.ComboBoxGenericDao;
+import com.doug.agenda.model.City;
 import com.doug.agenda.model.TypeContact;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextField;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -33,7 +35,7 @@ public class FormContactController implements Initializable, IRegister {
     private JFXTextField tfCep;
 
     @FXML
-    private JFXComboBox<?> tfCidade;
+    private JFXComboBox<City> tfCidade;
 
     @FXML
     private JFXTextField tfDescription;
@@ -65,11 +67,14 @@ public class FormContactController implements Initializable, IRegister {
     @FXML
     private JFXTextField tfUf;
     
-    private TypeContactDao tcDao = new TypeContactDao();
+    private ComboBoxGenericDao<TypeContact> cbDao = new ComboBoxGenericDao<>();
+    
+    private ComboBoxGenericDao<City> cDao = new ComboBoxGenericDao<>();
     
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-    	tfTipoContato.setItems(tcDao.findAll());
+    	tfTipoContato.setItems(cbDao.findAll(TypeContact.class));
+    	tfCidade.setItems(cDao.findAll(City.class));
     }
 
     @FXML

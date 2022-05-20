@@ -6,12 +6,16 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 
-import com.doug.agenda.model.TypeContact;
+public class GenericCrudDao<T> {
+	
+	private Class<T> className;
+	
+	public GenericCrudDao(Class<T> className) {
+		this.className = className;
+	}
 
-public class TypeContactDao {
-		
-	public List<TypeContact> findAll(String description) {
-		List<TypeContact> typesOfContacts = new ArrayList<>();
+	public List<T> findAll(String description) {
+		List<T> typesOfContacts = new ArrayList<>();
 		EntityManager manager = DatabaseConnection.openConnection();
 		EntityTransaction transaction = null;
 		
@@ -20,16 +24,16 @@ public class TypeContactDao {
 			transaction.begin();
 			
 			if (description.length() == 0) {
-				String query = "SELECT tc FROM TypeContact tc";
+				String query = "SELECT obj FROM " + className.getName() + " obj";
 				
-				typesOfContacts = manager.createQuery(query, TypeContact.class)
+				typesOfContacts = manager.createQuery(query, className)
 						.getResultList();
 			} else {
-				String query = "SELECT tc FROM TypeContact tc "
-						+ "WHERE tc.description LIKE " 
+				String query = "SELECT obj FROM " + className.getName() + " obj "
+						+ "WHERE obj.description LIKE " 
 						+ "'" + description + "%'";
 				
-				typesOfContacts = manager.createQuery(query, TypeContact.class)
+				typesOfContacts = manager.createQuery(query, className)
 						.getResultList();
 			}
 			
@@ -38,7 +42,7 @@ public class TypeContactDao {
 			if (transaction != null) {
 				transaction.rollback();
 			}
-			System.out.println("Error in findAll of TypeContact: " + e.getMessage());
+			System.out.println("Error in findAll: " + e.getMessage());
 		} finally {
 			manager.close();
 		}
@@ -46,7 +50,7 @@ public class TypeContactDao {
 		return typesOfContacts;
 	}
 
-	public boolean save(TypeContact tc) {
+	public boolean save(T entity) {
 		EntityManager manager = DatabaseConnection.openConnection();
 		EntityTransaction transaction = null;
 		
@@ -54,7 +58,7 @@ public class TypeContactDao {
 			transaction = manager.getTransaction();
 			transaction.begin();
 			
-			manager.merge(tc); // salva ou atualiza: se tive id é atualizado
+			manager.merge(entity); // salva ou atualiza: se tive id é atualizado
 			
 			transaction.commit();
 		} catch (Exception e) {
@@ -62,7 +66,7 @@ public class TypeContactDao {
 				transaction.rollback();
 			}
 			
-			System.out.println("Error in save of TypeContact: " + e.getMessage());
+			System.out.println("Error in save: " + e.getMessage());
 			return false;
 		} finally {
 			manager.close();
@@ -71,7 +75,7 @@ public class TypeContactDao {
 		return true;
 	}
 	
-	public void delete(TypeContact tc) {
+	public void delete(T entity, Object primaryKey) {
 		EntityManager manager = DatabaseConnection.openConnection();
 		EntityTransaction transaction = null;
 		
@@ -79,8 +83,8 @@ public class TypeContactDao {
 			transaction = manager.getTransaction();
 			transaction.begin();
 			
-			tc = manager.find(TypeContact.class, tc.getId());
-			manager.remove(tc);
+			entity = manager.find(className, primaryKey);
+			manager.remove(entity);
 			
 			transaction.commit();
 		} catch (Exception e) {
@@ -88,7 +92,7 @@ public class TypeContactDao {
 				transaction.rollback();
 			}
 			
-			System.out.println("Error in delete of TypeContact: " + e.getMessage());
+			System.out.println("Error in delete:" + e.getMessage());
 		} finally {
 			manager.close();
 		}

@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 import com.doug.agenda.controllers.contracts.IRegister;
-import com.doug.agenda.dao.TypeContactDao;
+import com.doug.agenda.dao.GenericCrudDao;
 import com.doug.agenda.model.TypeContact;
 import com.doug.agenda.utils.Alert;
 import com.jfoenix.controls.JFXTextField;
@@ -50,7 +50,7 @@ public class FormTypeContactController implements Initializable, IRegister {
     @FXML
     private TextField tfSearch;
     
-    private TypeContactDao tcDao = new TypeContactDao();
+    private GenericCrudDao<TypeContact> tcDao = new GenericCrudDao<>(TypeContact.class);
     
     private ObservableList<TypeContact> observableTypeContact = FXCollections.observableArrayList(); 
     
@@ -70,7 +70,7 @@ public class FormTypeContactController implements Initializable, IRegister {
     @FXML
     void deleteRegister(ActionEvent event) {
     	if (Alert.confirmAlert("Deseja realmente excluir o tipo de contato: " + tfDescription.getText())) {
-    		tcDao.delete(typeContactSelected);    		
+    		tcDao.delete(typeContactSelected, typeContactSelected.getId());    		
     		clearFormFields();
     		updateTable();
     		
