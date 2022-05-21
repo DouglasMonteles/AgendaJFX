@@ -141,13 +141,13 @@ public class MainScreenController implements Initializable {
 			Parent formScreen = FXMLLoader.load(getClass()
 					.getResource("/views/" + formName + ".fxml"));
 			
-			Stage stage = new Stage();
 			Scene scene = new Scene(formScreen);
+			Stage stage = new Stage();
 			
 			stage.setScene(scene);
 			stage.setTitle("Formulário");
 			stage.setResizable(false);
-			stage.initModality(Modality.APPLICATION_MODAL); // mantém a tela aberta
+			stage.initModality(Modality.APPLICATION_MODAL); // mantém a tela modal aberta
 			
 			stage.show();
 		} catch (IOException e) {

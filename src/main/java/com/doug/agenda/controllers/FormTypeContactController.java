@@ -148,11 +148,13 @@ public class FormTypeContactController implements Initializable, IRegister {
 
 	@Override
 	public void setFormFields() {
-		typeContactSelected = tableView.getItems()
-				.get(tableView.getSelectionModel().getSelectedIndex());
-		
-		tfId.setText(String.valueOf(typeContactSelected.getId()));
-		tfDescription.setText(typeContactSelected.getDescription());
+		if (!tableView.getItems().isEmpty()) {
+			int index = tableView.getSelectionModel().getSelectedIndex();
+			typeContactSelected = tableView.getItems().get(index);
+			
+			tfId.setText(String.valueOf(typeContactSelected.getId()));
+			tfDescription.setText(typeContactSelected.getDescription());
+		}
 	}
 
 	@Override

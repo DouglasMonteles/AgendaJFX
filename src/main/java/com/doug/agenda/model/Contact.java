@@ -8,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -42,6 +43,12 @@ public class Contact implements Serializable {
 	@Column(length = 11, nullable = false)
 	private String phone2;
 	
+	@Column(nullable = false)
+	private Boolean active;
+	
+	@Column(length = 10, nullable = false)
+	private String sex;
+	
 	@OneToOne
 	private City city;
 	
@@ -51,8 +58,8 @@ public class Contact implements Serializable {
 	public Contact() {}
 
 	public Contact(Long id, String description, String andress, Integer number, 
-			String email, LocalDate birthDate, String phone1, String phone2, City city, 
-			TypeContact typeContact) {
+			String email, LocalDate birthDate, String phone1, String phone2, 
+			Boolean active, String sex, City city, TypeContact typeContact) {
 		super();
 		this.id = id;
 		this.description = description;
@@ -62,6 +69,8 @@ public class Contact implements Serializable {
 		this.birthDate = birthDate;
 		this.phone1 = phone1;
 		this.phone2 = phone2;
+		this.active = active;
+		this.sex = sex;
 		this.city = city;
 		this.typeContact = typeContact;
 	}
@@ -144,6 +153,22 @@ public class Contact implements Serializable {
 
 	public void setTypeContact(TypeContact typeContact) {
 		this.typeContact = typeContact;
+	}
+	
+	public Boolean isActive() {
+		return active;
+	}
+
+	public void setActive(boolean active) {
+		this.active = active;
+	}
+	
+	public String getSex() {
+		return sex;
+	}
+
+	public void setSex(String sex) {
+		this.sex = sex;
 	}
 	
 }

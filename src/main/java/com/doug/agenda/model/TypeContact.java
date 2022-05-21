@@ -29,6 +29,12 @@ public class TypeContact implements Serializable {
 		this.id = id;
 		this.description = description;
 	}
+	
+	public TypeContact(TypeContact tc) {
+		super();
+		this.id = tc.getId();
+		this.description = tc.getDescription();
+	}
 
 	public Long getId() {
 		return id;

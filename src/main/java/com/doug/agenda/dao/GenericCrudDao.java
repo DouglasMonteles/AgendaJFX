@@ -6,12 +6,40 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 
+import com.doug.agenda.model.City;
+
 public class GenericCrudDao<T> {
 	
 	private Class<T> className;
 	
 	public GenericCrudDao(Class<T> className) {
 		this.className = className;
+	}
+	
+	public T findById(Object primaryKey) {
+		EntityManager manager = DatabaseConnection.openConnection();
+		EntityTransaction transaction = null;
+		T entity = null;
+		
+		try {
+			transaction = manager.getTransaction();
+			transaction.begin();
+			
+			entity = manager.find(className, primaryKey);
+			
+			transaction.commit();
+		} catch (Exception e) {
+			if (transaction != null) {
+				transaction.rollback();
+			}
+			
+			System.out.println("Error in findById: " + e.getMessage());
+		} finally {
+			manager.close();
+			DatabaseConnection.closeConnection();
+		}
+		
+		return entity;
 	}
 
 	public List<T> findAll(String description) {
@@ -45,6 +73,7 @@ public class GenericCrudDao<T> {
 			System.out.println("Error in findAll: " + e.getMessage());
 		} finally {
 			manager.close();
+			DatabaseConnection.closeConnection();
 		}
 		
 		return typesOfContacts;
@@ -70,6 +99,7 @@ public class GenericCrudDao<T> {
 			return false;
 		} finally {
 			manager.close();
+			DatabaseConnection.closeConnection();
 		}
 		
 		return true;
@@ -95,6 +125,7 @@ public class GenericCrudDao<T> {
 			System.out.println("Error in delete:" + e.getMessage());
 		} finally {
 			manager.close();
+			DatabaseConnection.closeConnection();
 		}
 	}
 	

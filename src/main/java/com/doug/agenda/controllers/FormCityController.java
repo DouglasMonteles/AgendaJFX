@@ -141,13 +141,14 @@ public class FormCityController implements Initializable, IRegister {
 		
 		TableColumn<City, String> ufColumn = new TableColumn<>("UF");
 		
-		tableView.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
 		tableView.getColumns().addAll(idColumn, descriptionColumn, cepColumn, ufColumn);
 		
 		idColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
 		descriptionColumn.setCellValueFactory(new PropertyValueFactory<>("description"));
 		cepColumn.setCellValueFactory(new PropertyValueFactory<>("cep"));
 		ufColumn.setCellValueFactory(new PropertyValueFactory<>("uf"));
+		
+		tableView.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
 	}
 
 	@Override

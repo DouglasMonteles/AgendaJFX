@@ -37,6 +37,14 @@ public class City implements Serializable {
 		this.uf = uf;
 		this.cep = cep;
 	}
+	
+	public City(City city) {
+		super();
+		this.id = city.getId();
+		this.description = city.getDescription();
+		this.uf = city.getDescription();
+		this.cep = city.getCep();
+	}
 
 	public Long getId() {
 		return id;
@@ -68,6 +76,11 @@ public class City implements Serializable {
 
 	public void setCep(Long cep) {
 		this.cep = cep;
+	}
+	
+	@Override
+	public String toString() {
+		return description;
 	}
 	
 }

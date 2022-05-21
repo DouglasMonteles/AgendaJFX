@@ -38,6 +38,7 @@ public class ComboBoxGenericDao<T> {
 			System.out.println("Error in comboBox of ComboBoxDao: " + e.getMessage());
 		} finally {
 			manager.close();
+			DatabaseConnection.closeConnection();
 		}
 		
 		list.forEach(obsList::add);

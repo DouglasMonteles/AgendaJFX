@@ -41,6 +41,7 @@ public class TypeContactDao {
 			System.out.println("Error in findAll of TypeContact: " + e.getMessage());
 		} finally {
 			manager.close();
+			DatabaseConnection.closeConnection();
 		}
 		
 		return typesOfContacts;
@@ -66,6 +67,7 @@ public class TypeContactDao {
 			return false;
 		} finally {
 			manager.close();
+			DatabaseConnection.closeConnection();
 		}
 		
 		return true;
@@ -91,6 +93,7 @@ public class TypeContactDao {
 			System.out.println("Error in delete of TypeContact: " + e.getMessage());
 		} finally {
 			manager.close();
+			DatabaseConnection.closeConnection();
 		}
 	}
 	
