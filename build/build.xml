@@ -1,0 +1,396 @@
+<?xml version="1.0" encoding="UTF-8"?>
+	<project name="AgendaJFX" default="do-deploy" basedir="."  xmlns:fx="javafx:com.sun.javafx.tools.ant">
+	<target name="init-fx-tasks">
+		<path id="fxant">
+			<filelist>
+				<file name="${java.home}\..\lib\ant-javafx.jar"/>
+				<file name="${java.home}\lib\jfxrt.jar"/>
+			</filelist>
+		</path>
+	
+		<taskdef resource="com/sun/javafx/tools/ant/antlib.xml"
+			uri="javafx:com.sun.javafx.tools.ant"
+			classpathref="fxant"/>
+	</target>
+	<target name="setup-staging-area">
+		<delete dir="externalLibs" />
+		<delete dir="project" />
+		<delete dir="projectRefs" />
+	
+		<mkdir dir="externalLibs" />
+	
+		<copy todir="externalLibs">
+			<fileset dir="C:\Users\dougl\.m2\repository\net\bytebuddy\byte-buddy\1.12.9">
+				<filename name="byte-buddy-1.12.9.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="C:\Users\dougl\.m2\repository\jakarta\xml\bind\jakarta.xml.bind-api\3.0.1">
+				<filename name="jakarta.xml.bind-api-3.0.1.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="C:\Users\dougl\.m2\repository\org\jboss\spec\javax\transaction\jboss-transaction-api_1.2_spec\1.1.1.Final">
+				<filename name="jboss-transaction-api_1.2_spec-1.1.1.Final.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="C:\Users\dougl\.m2\repository\org\hibernate\hibernate-entitymanager\5.6.9.Final">
+				<filename name="hibernate-entitymanager-5.6.9.Final.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="C:\Users\dougl\.m2\repository\org\antlr\antlr4-runtime\4.10">
+				<filename name="antlr4-runtime-4.10.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="C:\Users\dougl\.m2\repository\org\glassfish\jaxb\jaxb-core\3.0.2">
+				<filename name="jaxb-core-3.0.2.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="C:\Users\dougl\.m2\repository\org\glassfish\jaxb\jaxb-runtime\3.0.2">
+				<filename name="jaxb-runtime-3.0.2.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="C:\Users\dougl\.m2\repository\com\sun\activation\jakarta.activation\2.0.1">
+				<filename name="jakarta.activation-2.0.1.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="C:\Users\dougl\.m2\repository\org\jboss\jandex\2.4.2.Final">
+				<filename name="jandex-2.4.2.Final.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="C:\Users\dougl\.m2\repository\org\openjfx\javafx-graphics\17">
+				<filename name="javafx-graphics-17-win.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="C:\Users\dougl\.m2\repository\com\jfoenix\jfoenix\9.0.1">
+				<filename name="jfoenix-9.0.1.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="C:\Users\dougl\.m2\repository\jakarta\persistence\jakarta.persistence-api\3.0.0">
+				<filename name="jakarta.persistence-api-3.0.0.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="C:\Users\dougl\.m2\repository\jakarta\inject\jakarta.inject-api\2.0.0">
+				<filename name="jakarta.inject-api-2.0.0.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="C:\Users\dougl\.m2\repository\jakarta\transaction\jakarta.transaction-api\2.0.0">
+				<filename name="jakarta.transaction-api-2.0.0.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="C:\Users\dougl\.m2\repository\javax\persistence\javax.persistence-api\2.2">
+				<filename name="javax.persistence-api-2.2.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="C:\Users\dougl\.m2\repository\javax\xml\bind\jaxb-api\2.3.1">
+				<filename name="jaxb-api-2.3.1.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="C:\Users\dougl\.m2\repository\org\xerial\sqlite-jdbc\3.7.2">
+				<filename name="sqlite-jdbc-3.7.2.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="C:\Users\dougl\.m2\repository\org\openjfx\javafx-controls\17">
+				<filename name="javafx-controls-17.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="C:\Users\dougl\.m2\repository\com\github\gwenn\sqlite-dialect\0.1.2">
+				<filename name="sqlite-dialect-0.1.2.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="C:\Users\dougl\.m2\repository\org\openjfx\javafx-base\17">
+				<filename name="javafx-base-17-win.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="C:\Users\dougl\.m2\repository\antlr\antlr\2.7.7">
+				<filename name="antlr-2.7.7.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="C:\Users\dougl\.m2\repository\org\hibernate\common\hibernate-commons-annotations\6.0.1.Final">
+				<filename name="hibernate-commons-annotations-6.0.1.Final.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="C:\Users\dougl\.m2\repository\org\openjfx\javafx-fxml\17">
+				<filename name="javafx-fxml-17.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="C:\Users\dougl\.m2\repository\org\glassfish\jaxb\txw2\3.0.2">
+				<filename name="txw2-3.0.2.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="C:\Users\dougl\.m2\repository\javax\activation\javax.activation-api\1.2.0">
+				<filename name="javax.activation-api-1.2.0.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="C:\Users\dougl\.m2\repository\org\jboss\logging\jboss-logging\3.4.3.Final">
+				<filename name="jboss-logging-3.4.3.Final.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="C:\Users\dougl\.m2\repository\com\sun\istack\istack-commons-runtime\4.0.1">
+				<filename name="istack-commons-runtime-4.0.1.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="C:\Users\dougl\.m2\repository\org\hibernate\hibernate-core\5.6.9.Final">
+				<filename name="hibernate-core-5.6.9.Final.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="C:\Users\dougl\.m2\repository\org\openjfx\javafx-controls\17">
+				<filename name="javafx-controls-17-win.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="C:\Users\dougl\.m2\repository\com\fasterxml\classmate\1.5.1">
+				<filename name="classmate-1.5.1.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="C:\Users\dougl\.m2\repository\org\openjfx\javafx-fxml\17">
+				<filename name="javafx-fxml-17-win.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="C:\Users\dougl\.m2\repository\org\openjfx\javafx-graphics\17">
+				<filename name="javafx-graphics-17.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="externalLibs">
+			<fileset dir="C:\Users\dougl\.m2\repository\org\openjfx\javafx-base\17">
+				<filename name="javafx-base-17.jar"/>
+			</fileset>
+		</copy>
+	
+		<mkdir dir="project" />
+		<copy todir="project">
+			<fileset dir="C:\Users\dougl\Documents\www\workspace\AgendaJFX">
+				<include name="src\main\resources/**" />
+			</fileset>
+		</copy>
+		<copy todir="project">
+			<fileset dir="C:\Users\dougl\Documents\www\workspace\AgendaJFX">
+				<include name="src\test\java/**" />
+			</fileset>
+		</copy>
+		<copy todir="project">
+			<fileset dir="C:\Users\dougl\Documents\www\workspace\AgendaJFX">
+				<include name="target\generated-test-sources\test-annotations/**" />
+			</fileset>
+		</copy>
+		<copy todir="project">
+			<fileset dir="C:\Users\dougl\Documents\www\workspace\AgendaJFX">
+				<include name="src\main\java/**" />
+			</fileset>
+		</copy>
+		<copy todir="project">
+			<fileset dir="C:\Users\dougl\Documents\www\workspace\AgendaJFX">
+				<include name="src\test\resources/**" />
+			</fileset>
+		</copy>
+		<copy todir="project">
+			<fileset dir="C:\Users\dougl\Documents\www\workspace\AgendaJFX">
+				<include name="target\generated-sources\annotations/**" />
+			</fileset>
+		</copy>
+	
+		<mkdir dir="projectRefs" />
+	</target>
+	<target name='do-compile'>
+		<delete dir="build" />
+		<mkdir dir="build/src" />
+		<mkdir dir="build/libs" />
+		<mkdir dir="build/classes" />
+	
+		<!-- Copy project-libs references -->
+		<copy todir="build/libs">
+			<fileset dir="externalLibs">
+				<include name="hibernate-entitymanager-5.6.9.Final.jar"/>
+				<include name="jandex-2.4.2.Final.jar"/>
+				<include name="classmate-1.5.1.jar"/>
+				<include name="jakarta.persistence-api-3.0.0.jar"/>
+				<include name="javafx-fxml-17-win.jar"/>
+				<include name="jaxb-runtime-3.0.2.jar"/>
+				<include name="sqlite-dialect-0.1.2.jar"/>
+				<include name="javafx-controls-17-win.jar"/>
+				<include name="hibernate-core-5.6.9.Final.jar"/>
+				<include name="sqlite-jdbc-3.7.2.jar"/>
+				<include name="jboss-logging-3.4.3.Final.jar"/>
+				<include name="antlr4-runtime-4.10.jar"/>
+				<include name="hibernate-commons-annotations-6.0.1.Final.jar"/>
+				<include name="javax.activation-api-1.2.0.jar"/>
+				<include name="txw2-3.0.2.jar"/>
+				<include name="istack-commons-runtime-4.0.1.jar"/>
+				<include name="jboss-transaction-api_1.2_spec-1.1.1.Final.jar"/>
+				<include name="javafx-graphics-17.jar"/>
+				<include name="javafx-fxml-17.jar"/>
+				<include name="jaxb-api-2.3.1.jar"/>
+				<include name="javafx-base-17.jar"/>
+				<include name="jakarta.activation-2.0.1.jar"/>
+				<include name="javafx-controls-17.jar"/>
+				<include name="javafx-graphics-17-win.jar"/>
+				<include name="byte-buddy-1.12.9.jar"/>
+				<include name="jakarta.inject-api-2.0.0.jar"/>
+				<include name="jaxb-core-3.0.2.jar"/>
+				<include name="jfoenix-9.0.1.jar"/>
+				<include name="jakarta.xml.bind-api-3.0.1.jar"/>
+				<include name="javafx-base-17-win.jar"/>
+				<include name="jakarta.transaction-api-2.0.0.jar"/>
+				<include name="antlr-2.7.7.jar"/>
+				<include name="javax.persistence-api-2.2.jar"/>
+			</fileset>
+		</copy>
+	
+		<!-- Copy project references -->
+	
+		<!-- Copy project sources itself -->
+		<copy todir="build/src">
+			<fileset dir="project/src/test/java">
+				<include name="**/*"/>
+			</fileset>
+		</copy>
+		<copy todir="build/src">
+			<fileset dir="project/src/test/resources">
+				<include name="**/*"/>
+			</fileset>
+		</copy>
+		<copy todir="build/src">
+			<fileset dir="project/src/main/resources">
+				<include name="**/*"/>
+			</fileset>
+		</copy>
+		<copy todir="build/src">
+			<fileset dir="project/src/main/java">
+				<include name="**/*"/>
+			</fileset>
+		</copy>
+		<copy todir="build/src">
+			<fileset dir="project/target/generated-sources/annotations">
+				<include name="**/*"/>
+			</fileset>
+		</copy>
+		<copy todir="build/src">
+			<fileset dir="project/target/generated-test-sources/test-annotations">
+				<include name="**/*"/>
+			</fileset>
+		</copy>
+	
+		<javac includeantruntime="false" source="17" target="17" srcdir="build/src" destdir="build/classes" encoding="Cp1252">
+			<classpath>
+				<fileset dir="build/libs">
+					<include name="*"/>
+				</fileset>
+			</classpath>
+		</javac>
+	
+		<!-- Copy over none Java-Files -->
+		<copy todir="build/classes">
+		<fileset dir="project/src/test/java">
+			<exclude name="**/*.java"/>
+		</fileset>
+		<fileset dir="project/src/test/resources">
+			<exclude name="**/*.java"/>
+		</fileset>
+		<fileset dir="project/src/main/resources">
+			<exclude name="**/*.java"/>
+		</fileset>
+		<fileset dir="project/src/main/java">
+			<exclude name="**/*.java"/>
+		</fileset>
+		<fileset dir="project/target/generated-sources/annotations">
+			<exclude name="**/*.java"/>
+		</fileset>
+		<fileset dir="project/target/generated-test-sources/test-annotations">
+			<exclude name="**/*.java"/>
+		</fileset>
+		</copy>
+	
+	
+	</target>
+	<target name="do-deploy" depends="setup-staging-area, do-compile, init-fx-tasks">
+		<delete file="dist"/>
+		<delete file="deploy" />
+	
+		<mkdir dir="dist" />
+		<mkdir dir="dist/libs" />
+	
+		<copy todir="dist/libs">
+			<fileset dir="externalLibs">
+				<include name="*" />
+			</fileset>
+		</copy>
+	
+	
+		<fx:resources id="appRes">
+			<fx:fileset dir="dist" includes="AgendaJFX.jar"/>
+			<fx:fileset dir="dist" includes="libs/*"/>
+		</fx:resources>
+	
+		<fx:application id="fxApplication"
+			name="AgendaJFX"
+			mainClass="com.doug.agenda.Main"
+		/>
+	
+		<mkdir dir="build/classes/META-INF" />
+	
+	
+	
+		<fx:jar destfile="dist/AgendaJFX.jar">
+			<fx:application refid="fxApplication"/>
+			<fileset dir="build/classes">
+			</fileset>
+			<fx:resources refid="appRes"/>
+	
+			<manifest>
+				<attribute name="Implementation-Vendor" value="AgendaJFX"/>
+				<attribute name="Implementation-Title" value="AgendaJFX"/>
+				<attribute name="Implementation-Version" value="1.0.0"/>
+				<attribute name="JavaFX-Feature-Proxy" value="None"/>
+			</manifest>
+		</fx:jar>
+	
+	
+		<mkdir dir="deploy" />
+		<!-- Need to use ${basedir} because somehow the ant task is calculating the directory differently -->
+		<fx:deploy
+			embedJNLP="false"
+			extension="false"
+			includeDT="false"
+			offlineAllowed="true"
+			outdir="${basedir}/deploy"
+			outfile="AgendaJFX" nativeBundles="none"
+			updatemode="background" >
+	
+			<fx:platform basedir="${java.home}"/>
+			<fx:info title="AgendaJFX" vendor="AgendaJFX"/>
+	
+			<fx:application refId="fxApplication"/>
+			<fx:resources refid="appRes"/>
+		</fx:deploy>
+	
+	
+	</target>
+</project>

@@ -16,6 +16,7 @@ public class DatabaseConnection {
 				connection = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
 			}
 			
+			
 			return connection.createEntityManager();
 		} catch (Exception e) {
 			System.out.println("Open connection error: " + e.getMessage());

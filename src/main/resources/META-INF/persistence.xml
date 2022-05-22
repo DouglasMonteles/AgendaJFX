@@ -23,7 +23,7 @@
             <property name="hibernate.show_sql" value="true" />
             <property name="hibernate.format_sql" value="true" />
             <property name="hibernate.connection.charSet" value="UTF-8" />
-            <property name="hibernate.hbm2ddl.auto" value="none" /> <!-- Atualiza o schema, sem destruir os dados anteriores -->
+            <property name="hibernate.hbm2ddl.auto" value="update" /> <!-- Atualiza o schema, sem destruir os dados anteriores -->
             <!-- <property name="hibernate.hbm2ddl.auto" value="create" /> --> <!-- Cria o schema, destroi os dados anteriores -->
             <!-- <property name="hibernate.hbm2ddl.auto" value="none" />  --> <!-- Não faz nada com o schema e nem com o banco de dados -->
         </properties>
